@@ -3,35 +3,63 @@ package graph
 import "fmt"
 
 type AdjacencyMatrix struct {
-  Vertices int
-  Matrix [][]int
+	vertices int
+	edges    int
+	matrix   [][]int
 }
 
 func NewAdjacencyMatrix(vertices int) (*AdjacencyMatrix, error) {
-  if vertices <= 0 {
-    return nil, fmt.Errorf("vertices must be a positive number, given: %d", vertices)
-  }
+	if vertices <= 0 {
+		return nil, fmt.Errorf("vertices must be a positive number, given: %d", vertices)
+	}
 
-  am := &AdjacencyMatrix{Vertices: vertices}
-  am.Matrix = make([][]int, am.Vertices)
-  for i := 0; i < am.Vertices; i++ {
-    am.Matrix[i] = make([]int, am.Vertices)
-  }
+	am := &AdjacencyMatrix{vertices: vertices}
+	am.matrix = make([][]int, am.vertices)
+	for i := 0; i < am.vertices; i++ {
+		am.matrix[i] = make([]int, am.vertices)
+	}
 
-  return am, nil
+	return am, nil
 }
 
 func (am *AdjacencyMatrix) PutEdge(startVertex, destinationVertex, weight int) error {
-  if startVertex < 0 || startVertex >= am.Vertices {
-    return fmt.Errorf("Wrong vertex value: %d", startVertex)
-  }
+	if startVertex < 0 || startVertex >= am.vertices {
+		return fmt.Errorf("wrong vertex value: %d", startVertex)
+	}
 
-  if destinationVertex < 0 || destinationVertex > am.Vertices {
-    return fmt.Errorf("Wrong vertex value: %d", destinationVertex)
-  }
+	if destinationVertex < 0 || destinationVertex > am.vertices {
+		return fmt.Errorf("wrong vertex value: %d", destinationVertex)
+	}
 
-  am.Matrix[startVertex][destinationVertex] = weight
+	if weight < 1 {
+		return fmt.Errorf("weight must be a positive number, given: %d", weight)
+	}
 
-  return nil
+	if am.matrix[startVertex][destinationVertex] < 1 {
+		am.edges++ // new edge
+	}
+
+	am.matrix[startVertex][destinationVertex] = weight
+
+	return nil
 }
 
+func (am *AdjacencyMatrix) GetEdge(startVertex, destinationVertex int) (int, error) {
+	if startVertex < 0 || startVertex >= am.vertices {
+		return 0, fmt.Errorf("wrong vertex value: %d", startVertex)
+	}
+
+	if destinationVertex < 0 || destinationVertex > am.vertices {
+		return 0, fmt.Errorf("wrong vertex value: %d", destinationVertex)
+	}
+
+	return am.matrix[startVertex][destinationVertex], nil
+}
+
+func (am *AdjacencyMatrix) GetVerticesCount() int {
+	return am.vertices
+}
+
+func (am *AdjacencyMatrix) GetEdgesCount() int {
+	return am.edges
+}

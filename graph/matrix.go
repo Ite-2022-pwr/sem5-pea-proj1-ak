@@ -63,3 +63,15 @@ func (am *AdjacencyMatrix) GetVerticesCount() int {
 func (am *AdjacencyMatrix) GetEdgesCount() int {
 	return am.edges
 }
+
+func (am *AdjacencyMatrix) ToString() string {
+	var str string
+	for i := 0; i < am.vertices; i++ {
+		for j := 0; j < am.vertices; j++ {
+			str += fmt.Sprintf("%d ", am.matrix[i][j])
+		}
+		str += "\n"
+	}
+
+	return str
+}

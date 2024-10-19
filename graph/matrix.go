@@ -64,6 +64,17 @@ func (am *AdjacencyMatrix) GetEdgesCount() int {
 	return am.edges
 }
 
+func (am *AdjacencyMatrix) GetCopy() Graph {
+	amCopy := &AdjacencyMatrix{vertices: am.vertices, edges: am.edges}
+	amCopy.matrix = make([][]int, am.vertices)
+	for i := 0; i < am.vertices; i++ {
+		amCopy.matrix[i] = make([]int, am.vertices)
+		copy(amCopy.matrix[i], am.matrix[i])
+	}
+
+	return amCopy
+}
+
 func (am *AdjacencyMatrix) ToString() string {
 	var str string
 	for i := 0; i < am.vertices; i++ {

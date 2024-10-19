@@ -1,8 +1,27 @@
 package atsp
 
-import "math"
+import (
+	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
+	"math"
+)
 
-func (atsp *ATSP) BruteForce(startVertex int) (int, []int) {
+type BruteForceSolver struct {
+	graph graph.Graph
+}
+
+func (atsp *BruteForceSolver) GetGraph() graph.Graph {
+	return atsp.graph
+}
+
+func NewBruteForceSolver(g graph.Graph) *BruteForceSolver {
+	return &BruteForceSolver{graph: g}
+}
+
+func (atsp *BruteForceSolver) Solve(startVertex int) (int, []int) {
+	return atsp.BruteForce(startVertex)
+}
+
+func (atsp *BruteForceSolver) BruteForce(startVertex int) (int, []int) {
 	visited := make([]bool, atsp.graph.GetVerticesCount())
 	path := make([]int, 0, atsp.graph.GetVerticesCount())
 	bestPath := make([]int, atsp.graph.GetVerticesCount())
@@ -16,7 +35,7 @@ func (atsp *ATSP) BruteForce(startVertex int) (int, []int) {
 	return bestCost, bestPath
 }
 
-func (atsp *ATSP) bruteForceRecursive(startVertex int, visited []bool, currentVertex int, currentCost int, bestCost int, bestPath []int, path []int) (int, []int) {
+func (atsp *BruteForceSolver) bruteForceRecursive(startVertex int, visited []bool, currentVertex int, currentCost int, bestCost int, bestPath []int, path []int) (int, []int) {
 	if len(path) == atsp.graph.GetVerticesCount() {
 		cost, _ := atsp.graph.GetEdge(currentVertex, startVertex)
 		currentCost += cost

@@ -15,6 +15,23 @@ func main() {
 
 	fmt.Println(G.ToString())
 
-	tsp := atsp.NewATSP(G)
-	fmt.Println(tsp.BruteForce(0))
+	tsp := atsp.NewBruteForceSolver(G)
+	fmt.Println(tsp.Solve(0))
+
+	pq := utils.NewPriorityQueue(func(a, b int) bool {
+		return a < b
+	})
+
+	pq.Push(2)
+	pq.Push(1)
+	pq.Push(3)
+	pq.Push(7)
+	pq.Push(5)
+	pq.Push(4)
+	pq.Push(6)
+
+	for !pq.IsEmpty() {
+		//fmt.Println(pq.GetElements())
+		fmt.Println(pq.Pop())
+	}
 }

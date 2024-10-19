@@ -5,5 +5,6 @@ type Graph interface {
 	GetEdge(sourceVertex, destinationVertex int) (int, error)
 	GetVerticesCount() int
 	GetEdgesCount() int
+	GetCopy() Graph
 	ToString() string
 }

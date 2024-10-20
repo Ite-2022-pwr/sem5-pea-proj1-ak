@@ -7,4 +7,5 @@ type Graph interface {
 	GetEdgesCount() int
 	GetCopy() Graph
 	ToString() string
+	AsMatrix() [][]int
 }

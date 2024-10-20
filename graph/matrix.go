@@ -86,3 +86,7 @@ func (am *AdjacencyMatrix) ToString() string {
 
 	return str
 }
+
+func (am *AdjacencyMatrix) AsMatrix() [][]int {
+	return am.matrix
+}

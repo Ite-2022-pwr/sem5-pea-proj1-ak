@@ -21,4 +21,7 @@ func main() {
 
 	tsp = atsp.NewBranchAndBoundSolver(G)
 	fmt.Println(tsp.Solve(0))
+
+	tsp = atsp.NewDynamicProgrammingSolver(G)
+	fmt.Println(tsp.Solve(0))
 }

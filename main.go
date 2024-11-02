@@ -1,27 +1,26 @@
 package main
 
-import (
-	"fmt"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/atsp"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/utils"
-	"log"
-)
+import "github.com/Ite-2022-pwr/sem5-pea-proj1-ak/benchmark"
 
 func main() {
-	G, err := utils.ReadGraphFromFile("data/tsp_10.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
+	//G, err := utils.ReadGraphFromFile("data/tsp_10.txt")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//fmt.Println(G.ToString())
+	//
+	//var tsp atsp.ATSP
+	//tsp = atsp.NewBruteForceSolver(G)
+	//benchmark.MeasureSolveTime(tsp, "Brute Force")
+	//
+	//tsp = atsp.NewBranchAndBoundSolver(G)
+	//benchmark.MeasureSolveTime(tsp, "Branch and Bound")
+	//
+	//tsp = atsp.NewDynamicProgrammingSolver(G)
+	//benchmark.MeasureSolveTime(tsp, "Dynamic Programming")
 
-	fmt.Println(G.ToString())
-
-	var tsp atsp.ATSP
-	tsp = atsp.NewBruteForceSolver(G)
-	fmt.Println(tsp.Solve(0))
-
-	tsp = atsp.NewBranchAndBoundSolver(G)
-	fmt.Println(tsp.Solve(0))
-
-	tsp = atsp.NewDynamicProgrammingSolver(G)
-	fmt.Println(tsp.Solve(0))
+	//benchmark.BruteForce()
+	//benchmark.BranchAndBound()
+	benchmark.DynamicProgramming()
 }

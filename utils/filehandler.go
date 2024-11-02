@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"encoding/csv"
 	"fmt"
 	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
 	"io"
@@ -67,4 +68,21 @@ func ReadGraphFromFile(filePath string) (graph.Graph, error) {
 	}
 
 	return G, nil
+}
+
+// SaveCSV zapisuje dane do pliku csv
+func SaveCSV(filename string, data [][]string) {
+	fh, err := os.Create(filename)
+	defer fh.Close()
+	if err != nil {
+		log.Fatal(RedColor("[!!] Nie udało się utworzyć pliku: ", filename))
+	}
+
+	wrtr := csv.NewWriter(fh)
+
+	if err = wrtr.WriteAll(data); err != nil {
+		log.Fatal(RedColor("[!!] Nie udało się zapisać danych do pliku: ", filename))
+	}
+
+	log.Println(GreenColor("[+] Zapisano dane do pliku: ", filename))
 }

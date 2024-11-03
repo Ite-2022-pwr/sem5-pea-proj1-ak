@@ -1,9 +1,9 @@
 package main
 
-import "github.com/Ite-2022-pwr/sem5-pea-proj1-ak/benchmark"
+import "github.com/Ite-2022-pwr/sem5-pea-proj1-ak/menu"
 
 func main() {
-	//G, err := utils.ReadGraphFromFile("data/input/br17.txt")
+	//G, err := utils.ReadGraphFromFile("data/input/tsp_10_test1.txt")
 	//if err != nil {
 	//	log.Fatal(err)
 	//}
@@ -21,6 +21,8 @@ func main() {
 	//benchmark.MeasureSolveTime(tsp, "Dynamic Programming")
 
 	//benchmark.BruteForce()
-	benchmark.BranchAndBound()
+	//benchmark.BranchAndBound()
 	//benchmark.DynamicProgramming()
+
+	menu.RunMenu()
 }

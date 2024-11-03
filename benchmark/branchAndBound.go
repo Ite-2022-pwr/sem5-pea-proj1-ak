@@ -7,6 +7,7 @@ import (
 	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/utils"
 	"log"
 	"path/filepath"
+	"runtime/debug"
 )
 
 func BranchAndBound() {
@@ -21,9 +22,12 @@ func BranchAndBound() {
 			G, _ := generator.GenerateAdjacencyMatrix(numOfCities)
 			tsp := atsp.NewBranchAndBoundSolver(G)
 			totalTime += MeasureSolveTime(tsp, promt)
+			debug.FreeOSMemory()
 		}
 		avgTime := totalTime / float64(NumberOfGraphs)
 		result = append(result, []string{fmt.Sprintf("%d", numOfCities), fmt.Sprintf("%.3f", avgTime)})
+		utils.SaveCSV(filepath.Join(OutputDirectory, "branch_and_bound.csv"), result)
+		totalTime = 0.0
 	}
 
 	utils.SaveCSV(filepath.Join(OutputDirectory, "branch_and_bound.csv"), result)

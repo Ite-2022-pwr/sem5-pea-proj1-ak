@@ -1,9 +1,9 @@
 package benchmark
 
 const (
-	NumberOfGraphs = 100
-	MinVertices    = 12
-	MaxVertices    = 18
+	NumberOfGraphs = 50
+	MinVertices    = 9
+	MaxVertices    = 23
 
 	OutputDirectory = "data/output/"
 )

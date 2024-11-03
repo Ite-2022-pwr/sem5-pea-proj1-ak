@@ -3,7 +3,7 @@ package main
 import "github.com/Ite-2022-pwr/sem5-pea-proj1-ak/benchmark"
 
 func main() {
-	//G, err := utils.ReadGraphFromFile("data/tsp_10.txt")
+	//G, err := utils.ReadGraphFromFile("data/input/br17.txt")
 	//if err != nil {
 	//	log.Fatal(err)
 	//}
@@ -11,8 +11,8 @@ func main() {
 	//fmt.Println(G.ToString())
 	//
 	//var tsp atsp.ATSP
-	//tsp = atsp.NewBruteForceSolver(G)
-	//benchmark.MeasureSolveTime(tsp, "Brute Force")
+	////tsp = atsp.NewBruteForceSolver(G)
+	////benchmark.MeasureSolveTime(tsp, "Brute Force")
 	//
 	//tsp = atsp.NewBranchAndBoundSolver(G)
 	//benchmark.MeasureSolveTime(tsp, "Branch and Bound")
@@ -21,6 +21,6 @@ func main() {
 	//benchmark.MeasureSolveTime(tsp, "Dynamic Programming")
 
 	//benchmark.BruteForce()
-	//benchmark.BranchAndBound()
-	benchmark.DynamicProgramming()
+	benchmark.BranchAndBound()
+	//benchmark.DynamicProgramming()
 }

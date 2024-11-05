@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/atsp"
 	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/benchmark"
+	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/generator"
 	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
 	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/utils"
 	"log"
@@ -36,6 +37,8 @@ func RunMenu() {
 			fmt.Println(opts.Graph.ToString())
 		case 3:
 			RunAlgorithm()
+		case 4:
+			GenerateGraph()
 		default:
 			log.Println(utils.RedColor("[!!] Tylko opcje 0-3"))
 		}
@@ -99,4 +102,21 @@ func RunAlgorithm() {
 	}
 
 	benchmark.MeasureSolveTime(tsp, prompt)
+}
+
+func GenerateGraph() {
+	fmt.Print("Podaj liczbę miast: ")
+	var cities int
+	if _, err := fmt.Scanln(&cities); err != nil {
+		log.Println(utils.RedColor(err))
+		return
+	}
+
+	g, err := generator.GenerateAdjacencyMatrix(cities)
+	if err != nil {
+		log.Println(utils.RedColor(err))
+		return
+	}
+
+	opts.Graph = g
 }

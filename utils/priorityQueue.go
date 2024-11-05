@@ -1,19 +1,23 @@
 package utils
 
+// PriorityQueue to struktura implementująca kolejkę priorytetową
 type PriorityQueue[T any] struct {
-	elements []T
-	cmpFunc  func(a, b T) bool
+	elements []T               // elementy w kolejce
+	cmpFunc  func(a, b T) bool // funkcja porównująca elementy
 }
 
+// NewPriorityQueue tworzy nową kolejkę priorytetową
 func NewPriorityQueue[T any](cmpFunc func(a, b T) bool) *PriorityQueue[T] {
 	return &PriorityQueue[T]{cmpFunc: cmpFunc}
 }
 
+// Push dodaje element do kolejki
 func (pq *PriorityQueue[T]) Push(element T) {
 	pq.elements = append(pq.elements, element)
 	pq.heapifyUp(len(pq.elements) - 1)
 }
 
+// Pop zdejmuje element z kolejki
 func (pq *PriorityQueue[T]) Pop() T {
 	if pq.IsEmpty() {
 		return *new(T)
@@ -28,14 +32,17 @@ func (pq *PriorityQueue[T]) Pop() T {
 	return top
 }
 
+// IsEmpty zwraca true, jeśli kolejka jest pusta
 func (pq *PriorityQueue[T]) IsEmpty() bool {
 	return len(pq.elements) == 0
 }
 
+// GetElements zwraca elementy w kolejce
 func (pq *PriorityQueue[T]) GetElements() []T {
 	return pq.elements
 }
 
+// heapifyUp naprawia kopiec w górę
 func (pq *PriorityQueue[T]) heapifyUp(index int) {
 	for index > 0 {
 		parentIndex := (index - 1) / 2
@@ -48,6 +55,7 @@ func (pq *PriorityQueue[T]) heapifyUp(index int) {
 	}
 }
 
+// heapifyDown naprawia kopiec w dół
 func (pq *PriorityQueue[T]) heapifyDown(index int) {
 	for {
 		leftChildIndex := 2*index + 1

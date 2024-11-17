@@ -1,8 +1,8 @@
 package generator
 
 import (
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
 	"math/rand"
+	"pea1/graph"
 )
 
 func GenerateAdjacencyMatrix(vertices int) (*graph.AdjacencyMatrix, error) {

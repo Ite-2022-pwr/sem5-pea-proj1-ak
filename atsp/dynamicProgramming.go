@@ -1,8 +1,8 @@
 package atsp
 
 import (
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
 	"math"
+	"pea1/graph"
 )
 
 // DynamicProgrammingSolver to struktura implementująca algorytm rozwiązujący problem ATSP za pomocą programowania dynamicznego

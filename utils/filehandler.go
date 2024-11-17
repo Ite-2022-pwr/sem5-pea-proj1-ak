@@ -4,10 +4,10 @@ import (
 	"bufio"
 	"encoding/csv"
 	"fmt"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
 	"io"
 	"log"
 	"os"
+	"pea1/graph"
 	"strconv"
 	"strings"
 )

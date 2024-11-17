@@ -1,4 +1,4 @@
-module github.com/Ite-2022-pwr/sem5-pea-proj1-ak
+module pea1
 
 go 1.22.5
 

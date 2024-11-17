@@ -1,19 +1,17 @@
 package atsp
 
 import (
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/utils"
 	"math"
+	"pea1/graph"
+	"pea1/utils"
 )
 
 // BranchAndBoundSolver to struktura implementująca algorytm rozwiązujący problem ATSP za pomocą metody podziału i ograniczeń
 type BranchAndBoundSolver struct {
 	graph graph.Graph
 
-	LowBound             int   // dolne ograniczenie
-	UpperBound           int   // górne ograniczenie
-	BestPath             []int // najlepsza ścieżka
-	MinimumOutgoingEdges []int // minimalne wychodzące krawędzie z danego wierzchołka
+	UpperBound int   // górne ograniczenie
+	BestPath   []int // najlepsza ścieżka
 }
 
 // GetGraph zwraca graf, na którym działa algorytm
@@ -23,34 +21,12 @@ func (atsp *BranchAndBoundSolver) GetGraph() graph.Graph {
 
 // NewBranchAndBoundSolver tworzy nowy obiekt BranchAndBoundSolver
 func NewBranchAndBoundSolver(g graph.Graph) *BranchAndBoundSolver {
-	minimumOutgoingEdges := make([]int, g.GetVerticesCount())
 	bestPath := make([]int, g.GetVerticesCount())
-	minVal := math.MaxInt
-	lowBound := 0
-
-	// Obliczanie dolnego ograniczenia
-	for i := 0; i < g.GetVerticesCount(); i++ {
-		for j := 0; j < g.GetVerticesCount(); j++ {
-			if i != j {
-				weight, _ := g.GetEdge(i, j)
-				if weight < minVal {
-					// Znajdź minimalną wagę wychodzącej krawędzi z danego wierzchołka
-					minVal = weight
-				}
-			}
-		}
-
-		minimumOutgoingEdges[i] = minVal
-		lowBound += minVal
-		minVal = math.MaxInt
-	}
 
 	return &BranchAndBoundSolver{
-		graph:                g,
-		LowBound:             lowBound,
-		UpperBound:           math.MaxInt,
-		MinimumOutgoingEdges: minimumOutgoingEdges,
-		BestPath:             bestPath,
+		graph:      g,
+		UpperBound: math.MaxInt,
+		BestPath:   bestPath,
 	}
 }
 
@@ -67,7 +43,7 @@ type Node struct {
 
 // BranchAndBound to funkcja rozwiązująca problem ATSP za pomocą metody podziału i ograniczeń
 func (atsp *BranchAndBoundSolver) BranchAndBound(startVertex int) (int, []int) {
-	startNode := Node{Vertex: startVertex, LowerBound: atsp.LowBound}
+	startNode := Node{Vertex: startVertex, LowerBound: 0}
 	visited := make([]bool, atsp.graph.GetVerticesCount())
 	helperPath := make([]int, 0)
 
@@ -76,11 +52,7 @@ func (atsp *BranchAndBoundSolver) BranchAndBound(startVertex int) (int, []int) {
 
 // calculateLowerBound oblicza dolne ograniczenie dla danego wierzchołka
 func (atsp *BranchAndBoundSolver) calculateLowerBound(node Node, nextVertex int) int {
-	// Obliczenie dolnego ograniczenia dla następnego węzła polega na odjęciu minimalnej wychodzącej krawędzi z wierchołka
-	// poprzedniego węzła oraz dodaniu wagi krawędzi między wierzchołkami poprzedniego i następnego węzła.
-	// W momencie odwiedzenia wszystkich wierchołków, w węźle będącym liściem drzewa przeszukiwań, dolne ograniczenie
-	// dla tego węzła to rzeczywisty koszt pokonanej ścieżki.
-	return node.LowerBound - atsp.MinimumOutgoingEdges[node.Vertex] + atsp.graph.AsMatrix()[node.Vertex][nextVertex]
+	return node.LowerBound + atsp.graph.AsMatrix()[node.Vertex][nextVertex]
 }
 
 // branchAndBoundRecursive to funkcja rekurencyjna rozwiązująca problem ATSP za pomocą metody podziału i ograniczeń

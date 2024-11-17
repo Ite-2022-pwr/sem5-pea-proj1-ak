@@ -2,9 +2,9 @@ package benchmark
 
 import (
 	"fmt"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/atsp"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/utils"
 	"log"
+	"pea1/atsp"
+	"pea1/utils"
 	"time"
 )
 

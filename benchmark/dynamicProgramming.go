@@ -2,11 +2,11 @@ package benchmark
 
 import (
 	"fmt"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/atsp"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/generator"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/utils"
 	"log"
 	"path/filepath"
+	"pea1/atsp"
+	"pea1/generator"
+	"pea1/utils"
 	"runtime/debug"
 )
 
@@ -26,9 +26,9 @@ func DynamicProgramming() {
 		}
 		avgTime := totalTime / float64(NumberOfGraphs)
 		result = append(result, []string{fmt.Sprintf("%d", numOfCities), fmt.Sprintf("%.3f", avgTime)})
-		utils.SaveCSV(filepath.Join(OutputDirectory, "dynamic_programming.csv"), result)
+		utils.SaveCSV(filepath.Join(OutputDirectory, "dynamic_programming3.csv"), result)
 		totalTime = 0.0
 	}
 
-	utils.SaveCSV(filepath.Join(OutputDirectory, "dynamic_programming.csv"), result)
+	utils.SaveCSV(filepath.Join(OutputDirectory, "dynamic_programming3.csv"), result)
 }

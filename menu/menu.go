@@ -2,12 +2,12 @@ package menu
 
 import (
 	"fmt"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/atsp"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/benchmark"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/generator"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/graph"
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/utils"
 	"log"
+	"pea1/atsp"
+	"pea1/benchmark"
+	"pea1/generator"
+	"pea1/graph"
+	"pea1/utils"
 )
 
 type Options struct {

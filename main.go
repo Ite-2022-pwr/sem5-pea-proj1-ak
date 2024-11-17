@@ -1,10 +1,9 @@
 package main
 
-import (
-	"github.com/Ite-2022-pwr/sem5-pea-proj1-ak/menu"
-)
+import "pea1/menu"
 
 func main() {
 	menu.RunMenu()
+	//benchmark.BruteForce()
 	//benchmark.All()
 }
